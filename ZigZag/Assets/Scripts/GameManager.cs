@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOver;
     [SerializeField] GameObject ScoreTextGo;
     [SerializeField] GameObject retry;
+    [SerializeField] GameObject quit;
     public TextMeshProUGUI scoreGameOver;
     public TextMeshProUGUI bestScore;
     private static GameManager instance;
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
             gameOver.SetActive(true);
 
             retry.SetActive(true);
+            quit.SetActive(true);
             ScoreTextGo.SetActive(false);
             if(PlayerPrefs.GetInt("BestScore") < int.Parse(score.text))
             {
@@ -61,6 +63,8 @@ public class GameManager : MonoBehaviour
         else
         {
             gameOver.SetActive(false);
+            retry.SetActive(false);
+            quit.SetActive(false);
             scoreGameOver.text = "";
             bestScore.text = "";
         }
@@ -70,5 +74,10 @@ public class GameManager : MonoBehaviour
     public void OnClickRetry()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void OnClickQuit()
+    {
+        Application.Quit();
     }
 }

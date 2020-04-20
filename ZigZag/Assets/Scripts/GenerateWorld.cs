@@ -12,26 +12,29 @@ public class GenerateWorld : MonoBehaviour
 
     IEnumerator Wait()
     {
-        while(!GameManager.Instance.isactive)
+        while (!GameManager.Instance.isactive)
         {
-        yield return new WaitForSeconds(0.2f);
-           
-            GameObject go = Instantiate(prefabsCube, new Vector3(prefabsCube.transform.position.x - countX , prefabsCube.transform.position.y, prefabsCube.transform.position.z-countZ), Quaternion.identity);
+            yield return new WaitForSeconds(0.2f);
+
+            GameObject go = Instantiate(prefabsCube, new Vector3(prefabsCube.transform.position.x - countX, prefabsCube.transform.position.y, prefabsCube.transform.position.z - countZ), Quaternion.identity);
             count++;
-            if(count % 2 != 0)
-            countX++;
-            if(count %2 == 0)
+            if (count % 3 != 0)
             {
-                if (Random.Range(0, 2) == 1)
+                if (Random.Range(0, 3) == 1)
                     countZ++;
                 else
                     countX++;
             }
-            if(Random.Range(0,5)== 4)
+
+            else
+                countZ++;
+
+
+            if (Random.Range(0, 5) == 4)
             {
-                GameObject go2 = Instantiate(loot, new Vector3(prefabsCube.transform.position.x - countX, prefabsCube.transform.position.y +2f, prefabsCube.transform.position.z - countZ), Quaternion.identity);
+                GameObject go2 = Instantiate(loot, new Vector3(prefabsCube.transform.position.x - countX, prefabsCube.transform.position.y + 2f, prefabsCube.transform.position.z - countZ), Quaternion.identity);
             }
-          
+
         }
     }
     void Start()
@@ -39,12 +42,12 @@ public class GenerateWorld : MonoBehaviour
 
 
         StartCoroutine(Wait());
-        
+
     }
 
 
     void Update()
     {
-        
+
     }
 }
