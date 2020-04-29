@@ -32,33 +32,33 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
 
     void Update()
     {
-        
+
         score.text = score.text;
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(0);
         }
-        if(isactive)
+        if (isactive)
         {
             gameOver.SetActive(true);
 
             retry.SetActive(true);
             quit.SetActive(true);
             ScoreTextGo.SetActive(false);
-            if(PlayerPrefs.GetInt("BestScore") < int.Parse(score.text))
+            if (PlayerPrefs.GetInt("BestScore") < int.Parse(score.text))
             {
 
-            PlayerPrefs.SetInt("BestScore", int.Parse(score.text));
+                PlayerPrefs.SetInt("BestScore", int.Parse(score.text));
             }
             scoreGameOver.text = "Score : " + score.text;
             bestScore.text = "Best : " + PlayerPrefs.GetInt("BestScore");
-           
+
         }
         else
         {
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
             scoreGameOver.text = "";
             bestScore.text = "";
         }
-        
+
     }
 
     public void OnClickRetry()
@@ -78,6 +78,10 @@ public class GameManager : MonoBehaviour
 
     public void OnClickQuit()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+          Application.Quit();
+#endif
     }
 }

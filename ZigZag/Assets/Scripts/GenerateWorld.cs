@@ -30,7 +30,7 @@ public class GenerateWorld : MonoBehaviour
                 countZ++;
 
 
-            if (Random.Range(0, 5) == 4)
+            if (Random.Range(0, 10) == 4)
             {
                 GameObject go2 = Instantiate(loot, new Vector3(prefabsCube.transform.position.x - countX, prefabsCube.transform.position.y + 2f, prefabsCube.transform.position.z - countZ), Quaternion.identity);
             }

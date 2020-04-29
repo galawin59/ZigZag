@@ -6,6 +6,7 @@ public class Loot : MonoBehaviour
 {
     // Start is called before the first frame update
     int score = 2;
+    [SerializeField] GameObject particules;
     void Start()
     {
         
@@ -23,6 +24,9 @@ public class Loot : MonoBehaviour
         {
             score = int.Parse(GameManager.Instance.score.text) + 2;
             GameManager.Instance.score.text = score.ToString();
+            GameObject go = Instantiate(particules, new Vector3(transform.position.x , transform.position.y, transform.position.z ), Quaternion.identity);
+            go.transform.Rotate(new Vector3(-90f,0f,0f));
+            
             Destroy(gameObject);
         }
     }
